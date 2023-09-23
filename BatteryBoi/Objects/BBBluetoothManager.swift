@@ -201,6 +201,7 @@ struct BluetoothObject:Decodable,Equatable {
     var updated:Date
     var device: String?
     var connected: BluetoothState
+    var lastPercentCheck: UInt?
     
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
@@ -211,6 +212,7 @@ struct BluetoothObject:Decodable,Equatable {
         self.connected = .disconnected
         self.device = nil
         self.updated = Date.distantPast
+        self.lastPercentCheck = nil
         
         if let distance = try? values.decode(String.self, forKey: .rssi) {
             if let value = Double(distance) {
@@ -522,6 +524,7 @@ class BluetoothManager:ObservableObject {
                         if update.connected != status {
                             update.updated = Date()
                             update.connected = status
+                            update.lastPercentCheck = nil
                             
                             self.list[index] = update
                                                         
