@@ -432,33 +432,35 @@ class BluetoothManager:ObservableObject {
                                             }
                                             
                                             if let index = self.list.firstIndex(where: {$0.address == device.addressString }) {
+                                                currDate = Date()
+
                                                 if self.list[index].battery.general != nil && updated.battery.general == nil  {
                                                     updated.battery.general = self.list[index].battery.general
-                                                    updated.updated = Date()
+                                                    updated.updated = currDate
                                                     
                                                 }
                                                 
                                                 if self.list[index].battery.left != nil && updated.battery.left == nil  {
                                                     updated.battery.left = self.list[index].battery.left
-                                                    updated.updated = Date()
+                                                    updated.updated = currDate
                                                     
                                                 }
                                                 
                                                 if self.list[index].battery.right != nil && updated.battery.right == nil  {
                                                     updated.battery.right = self.list[index].battery.right
-                                                    updated.updated = Date()
+                                                    updated.updated = currDate
                                                     
                                                 }
                                                 
                                                 if self.list[index].battery.percent != nil && updated.battery.percent == nil  {
                                                     updated.battery.percent = self.list[index].battery.percent
-                                                    updated.updated = Date()
+                                                    updated.updated = currDate
                                                     
                                                 }
                                                 
                                                 if self.list[index].distance != updated.distance {
                                                     updated.distance = self.list[index].distance
-                                                    updated.updated = Date()
+                                                    updated.updated = currDate
                                                     
                                                 }
                                                 
